@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Cuisines;
+use App\Models\Cuisine;
 
 class CuisinesSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class CuisinesSeeder extends Seeder
      */
     public function run()
     {
-        Cuisines::create(
+        Cuisine::create(
             [
                 'name' => 'Italian'
             ]

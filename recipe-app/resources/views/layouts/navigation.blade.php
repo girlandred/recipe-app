@@ -33,7 +33,7 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <x-slot name="content">z
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

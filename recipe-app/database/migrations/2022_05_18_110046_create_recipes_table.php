@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            // $table->text('directions');
             $table->timestamps();
         });
     }
