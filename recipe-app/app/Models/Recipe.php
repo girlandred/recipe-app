@@ -2,19 +2,23 @@
 
 namespace App\Models;
 
-use App\Traits\HasCuisines;
+use App\Traits\HasSpecifications;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Carbon\CarbonInterval;
 
 class Recipe extends Model
 {
     use HasFactory;
-    use HasCuisines;
+    use HasSpecifications;
 
     protected $fillable = [
         'name',
         'directions',
+        'servings',
+        'timing',
+        'image',
+        'category_id',
     ];
 
     public function ingredients()
@@ -32,16 +36,32 @@ class Recipe extends Model
         return route('recipes.show', [$this->id]);
     }
 
-    public function cuisines(): BelongsToMany
+    public function id(): int
     {
-        return $this->belongsToMany(Cuisine::class, 'recipe_cuisine');
+        return $this->id;
+    }
+    public function name(): string
+    {
+        return $this->name;
     }
 
-    // public function delete()
-    // {
-    //     $this->removeCuisines();
-    //     parent::delete();
-    // }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
-    // protected $with = [];
+    public function getReadableTimingAttribute(): CarbonInterval
+    {
+        return \Carbon\CarbonInterval::minutes($this->timing)->cascade()->forHumans();
+    }
+
+    public function delete()
+    {
+        $this->removeSpecifications();
+        parent::delete();
+    }
+
+    protected $with = [
+        'specificationsRelation'
+    ];
 }

@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Foundation\Http\FormRequest;
 
-class CuisineStoreRequest extends FormRequest
+class UpdateSpecificationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class CuisineStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -26,7 +24,7 @@ class CuisineStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'max:100'],
         ];
     }
 }

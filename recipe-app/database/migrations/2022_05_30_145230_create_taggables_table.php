@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->text('directions');
-            $table->string('servings');
-            $table->string('timing');
-            $table->string('image');
+            $table->foreignId('specification_id')->constrained('specifications');
+            $table->morphs('taggable');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('taggables');
     }
 };

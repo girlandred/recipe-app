@@ -13,12 +13,6 @@ use Illuminate\Contracts\View\View;
 
 class AdminController extends Controller
 {
-    //     public function index()
-    //     {
-    //         return view('admin.index');
-    //     }
-    // }
-
     public function adminDashboard(): View
     {
         $recipes = Recipe::count();

@@ -18,14 +18,14 @@
                     Recipe Details
                 </h4>
                 <div class="order-first lg:order-last pb-3 lg:flex lg:space-x-2">
-                        <div>
-                            @if ($recipe->user->id == Auth::id())
-                                <a href="{{ route('recipes.edit', $recipe) }}"
-                                    class="w-full lg:w-auto rounded shadow-md py-1 px-2 bg-green-700 text-white hover:bg-green-500 text-xs">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                            @endif
-                        </div>
+                    <div>
+                        @if ($recipe->user->id == Auth::id())
+                            <a href="{{ route('recipes.edit', $recipe) }}"
+                                class="w-full lg:w-auto rounded shadow-md py-1 px-2 bg-green-700 text-white hover:bg-green-500 text-xs">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -34,11 +34,13 @@
                         Ingredients
                     </h4>
                     <p class="mb-5 dark:text-gray-200">
+                        <strong>Serves</strong> {{ $recipe->servings }}<br>
+                        <strong>Cooking and Prep Time</strong> {{ $recipe->timing }} minutes<br>
                     <ul>
                         @foreach ($recipe->ingredients as $ingredient)
                             <li class="dark:text-gray-200"">
-                                    {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
-                                </li>
+                                                {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
+                                            </li>
      @endforeach
                     </ul>
                     </p>
@@ -48,7 +50,21 @@
                         Method
                     </h4>
                     <article class="max-w-full prose dark:prose-dark">
+                        {!! $recipe->directions !!}
                     </article>
+                    <article class="max-w-full prose dark:prose-dark">
+                    </article>
+                </div>
+                <div>
+                    <form action="{{ route('recipes.destroy', $recipe) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="w-full lg:w-auto rounded shadow-md py-1 px-2 bg-gray-400 text-white hover:bg-gray-300 text-xs"
+                            aria-label="Delete Ingredient">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

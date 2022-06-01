@@ -28,6 +28,54 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
+                        <label for="servings" class="dark:text-gray-200 self-center">
+                            # of Servings
+                        </label>
+                        <div class="w-full md:col-span-4">
+                            <input type="text" name="servings" id="servings" value="{{ Request::old('servings') }}"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                            @error('servings')
+                                <p class="text-red-500 italic text-xs font-light">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
+                        <label for="timing" class="dark:text-gray-200 self-center">
+                            Time in Minutes
+                        </label>
+                        <div class="w-full md:col-span-4">
+                            <input type="text" name="timing" id="timing" value="{{ Request::old('timing') }}"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                            @error('timing')
+                                <p class="text-red-500 italic text-xs font-light">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
+                        <label for="category_id" class="dark:text-gray-200 self-center">
+                            Recipe Type
+                        </label>
+                        <div class="w-full md:col-span-4">
+                            <select name="category_id"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <p class="text-red-500 italic text-xs font-light">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="md:space-y-2">
                         <label class="dark:text-gray-200 self-center">
                             Ingredients
@@ -39,13 +87,28 @@
                         @enderror
                         @livewire('recipes.create')
                     </div>
+                    <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
+                        <label for="image" class="dark:text-gray-200 self-center">
+                             image
+                        </label>
+                        <div class="w-full md:col-span-4">
+                            <input type="file" name="image" id="image"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                            @error('image')
+                                <p class="text-red-500 italic text-xs font-light">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="">
                         <label class="dark:text-gray-200 self-center">
-                            Cuisines
+                            Specifications
                         </label>
-                        <select name="cuisines[]" id="cuisines" multiple x-data="{}" x-init="function() { choices($el) }">
-                            @foreach ($cuisines as $cuisine)
-                                <option value="{{ $cuisine->id() }}">{{ $cuisine->name() }}</option>
+                        <select name="specifications[]" id="specifications" multiple x-data="{}"
+                            x-init="function() { choices($el) }">
+                            @foreach ($specifications as $specification)
+                                <option value="{{ $specification->id() }}">{{ $specification->name() }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -70,7 +133,6 @@
     </div>
 @endsection
 @section('scripts')
-
     <script>
         ClassicEditor
             .create(document.querySelector('#directions'), {

@@ -38,6 +38,26 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hidden lg:block" :class="{ 'hidden': !open }">
+                    <div class="p-4">
+                        <div class="flex flex-row justify-between">
+                            <div class="font-bold mb-3 dark:text-gray-200">
+                                Specifications
+                            </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <a href="{{ route('admin.specifications.index') }}"
+                                class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
+                                - List all Specifications
+                            </a>
+                            <a href="{{ route('admin.specifications.create') }}"
+                                class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
+                                - Add new Specification
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

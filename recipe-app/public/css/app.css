@@ -1025,9 +1025,6 @@ select {
 .bg-opacity-20 {
   --tw-bg-opacity: 0.2;
 }
-.bg-opacity-5 {
-  --tw-bg-opacity: 0.05;
-}
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -1406,9 +1403,6 @@ select {
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-.hover\:bg-opacity-10:hover {
-  --tw-bg-opacity: 0.1;
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;

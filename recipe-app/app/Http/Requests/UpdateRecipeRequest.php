@@ -27,9 +27,18 @@ class UpdateRecipeRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            // 'directions' => 'required',
-            // 'category_id' => 'exists:App\Models\Category,id',
+            'servings' => 'required',
+            'directions' => 'required',
+            'timing' => 'required',
+            'category_id' => 'exists:App\Models\Category,id',
             'ingredients' => 'required|array',
+            'specifications' => 'array|nullable',
+            'specifications.*' => 'exists:specifications,id',
         ];
+    }
+
+    public function specifications(): array
+    {
+        return $this->get('specifications', []);
     }
 }

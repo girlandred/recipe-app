@@ -27,9 +27,19 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            // 'directions' => 'required',
-            // 'category_id' => 'exists:App\Models\Category,id',
+            'servings' => 'required',
+            'directions' => 'required',
+            'timing' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
+            'category_id' => 'exists:App\Models\Category,id',
             'ingredients' => 'required|array',
+            'specifications' => 'array|nullable',
+            'specifications.*' => 'exists:specifications,id',
         ];
+    }
+
+    public function specifications(): array
+    {
+        return $this->get('specifications', []);
     }
 }
