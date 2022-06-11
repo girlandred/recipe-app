@@ -33,13 +33,16 @@ Route::middleware(['set_locale'])->group(function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
+    Route::group(['prefix' => 'user', 'as' => 'user'], function () {
+        Route::get('/{user}', [UserController::class, 'index'])->name('.index');
+        Route::post('/{user}', [UserController::class, 'store']);
+    });
+
     Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
         Route::resource('ingredients', IngredientController::class);
         Route::resource('specifications', SpecificationController::class);
     });
-
-
 
     require __DIR__ . '/auth.php';
 });

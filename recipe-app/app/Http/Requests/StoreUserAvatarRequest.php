@@ -24,7 +24,7 @@ class StoreUserAvatarRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'sometimes',
+            'avatar' => 'required',
         ];
     }
 }
