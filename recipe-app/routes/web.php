@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\SpecificationController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,19 +24,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('recipes', RecipeController::class);
+Route::get('locale/{locale}', [LanguageController::class, 'changeLocale'])->name('locale');
+Route::middleware(['set_locale'])->group(function () {
+    Route::resource('recipes', RecipeController::class);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
-    Route::resource('ingredients', IngredientController::class);
-    Route::resource('specifications', SpecificationController::class);
+    Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
+        Route::resource('ingredients', IngredientController::class);
+        Route::resource('specifications', SpecificationController::class);
+    });
+
+
+
+    require __DIR__ . '/auth.php';
 });
-
-
-
-require __DIR__ . '/auth.php';

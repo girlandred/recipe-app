@@ -33,15 +33,15 @@
                     <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
                         Ingredients
                     </h4>
-                    <p class="mb-5 dark:text-gray-200">
+                    <p class="mb-5 dark:text-gray-200"><img src="{{ $recipe->getFirstMediaUrl('image') }}" />
                         <strong>Serves</strong> {{ $recipe->servings }}<br>
                         <strong>Cooking and Prep Time</strong> {{ $recipe->timing }} minutes<br>
                     <ul>
                         @foreach ($recipe->ingredients as $ingredient)
-                            <li class="dark:text-gray-200"">
-                                                {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
-                                            </li>
-     @endforeach
+                            <li class="dark:text-gray-200">
+                                {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
+                            </li>
+                        @endforeach
                     </ul>
                     </p>
                 </div>
@@ -52,10 +52,9 @@
                     <article class="max-w-full prose dark:prose-dark">
                         {!! $recipe->directions !!}
                     </article>
-                    <article class="max-w-full prose dark:prose-dark">
-                    </article>
                 </div>
                 <div>
+                    @if ($recipe->user->id == Auth::id() || $recipe->user->is_admin == true)
                     <form action="{{ route('recipes.destroy', $recipe) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -65,7 +64,15 @@
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>
+                    @endif
+
                 </div>
+            </div>
+            <div class="pt-4">
+                <h5 class="text-xl font-bold mb-5 dark:text-gray-200 text-green-700">
+                    Comments
+                </h5>
+                @livewire('comments', ['recipe' => $recipe])
             </div>
         </div>
     </div>

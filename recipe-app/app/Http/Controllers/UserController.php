@@ -2,83 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserAvatarRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(User $user)
     {
-        //
+        return view('user.index', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function crop(Request $request)
     {
-        //
+        $path = public_path('user_img');
+
+        $file = $request->file('UIMG_202202206212b834dbd3c.jpg');
+        $new_name = 'UIMG_' . date('Ymd') . uniqid() . '.jpg';
+
+        //Upload new image
+        $upload = $file->move($path, $new_name);
+        if ($upload) {
+            User::find(Auth::user()->id)->update(['avatar' => $new_name]);
+            return response()->json([
+                'status' => 1,
+                'message' => __('main.success'),
+                'name' => $new_name
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => __('main.error'),
+            ]);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $query = User::find(Auth::user()->id)->update([
+            'name' => $request->name,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if (!$query) {
+            return response()->json([
+                'status' => 0,
+                'message' => __('main.error'),
+            ]);
+        } else {
+            return response()->json([
+                'status' => 1,
+                'message' => __('main.success'),
+            ]);
+        }
     }
 }

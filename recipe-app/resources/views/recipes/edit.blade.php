@@ -113,6 +113,17 @@
                                 class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full h-64 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">{!! old('directions', $recipe->directions) !!}</textarea>
                         </div>
                     </div>
+                    <div class="w-full md:col-span-4 grid grid-cols-1 md:grid-cols-12">
+                        @if ($recipe->getMedia()->count() > 0)
+                            <div class="md:col-span-2">
+                                <img src="{{ $recipe->getFirstMediaUrl() }}" class="h-16 rounded">
+                            </div>
+                        @endif
+                        <div class="w-full md:col-span-4">
+                            <input type="file" name="image" id="image"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                        </div>
+                    </div>
                     <div>
                         <button type="submit"
                             class="w-full lg:w-auto rounded shadow-md py-2 px-4 bg-green-700 text-white hover:bg-green-500">

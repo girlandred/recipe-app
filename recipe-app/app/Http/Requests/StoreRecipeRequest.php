@@ -30,11 +30,11 @@ class StoreRecipeRequest extends FormRequest
             'servings' => 'required',
             'directions' => 'required',
             'timing' => 'required',
-            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
             'category_id' => 'exists:App\Models\Category,id',
             'ingredients' => 'required|array',
             'specifications' => 'array|nullable',
             'specifications.*' => 'exists:specifications,id',
+            'image' => 'required',
         ];
     }
 

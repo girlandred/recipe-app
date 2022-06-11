@@ -6,10 +6,13 @@ use App\Traits\HasSpecifications;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\CarbonInterval;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Recipe extends Model
+class Recipe extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
     use HasSpecifications;
 
     protected $fillable = [
@@ -17,7 +20,6 @@ class Recipe extends Model
         'directions',
         'servings',
         'timing',
-        'image',
         'category_id',
     ];
 
@@ -64,4 +66,9 @@ class Recipe extends Model
     protected $with = [
         'specificationsRelation'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->orderBy('created_at', 'DESC');
+    }
 }

@@ -12,7 +12,6 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Specification;
 use App\Models\Category;
-use Nette\Utils\Image;
 
 
 class RecipeController extends Controller
@@ -39,26 +38,17 @@ class RecipeController extends Controller
             'timing' => $request['timing'],
             'category_id' => $request['category_id'],
             'directions' => $request['directions'],
-            'image' => $request['image']
+            'image' => $request['image'],
         ]);
-
-
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-
-            $image_name = uniqid() . '-' . $request->title . '.' . $request->image->extension();
-            $path = public_path('images');
-            $resize = Image::make($file->getRealPath());
-            $resize->resize(368, 276, 10, function ($const) {
-            })->save($path . '/' . $image_name);
-
-            $file->move(public_path('image'), $image_name);
-        }
 
         $recipe->syncSpecifications($request->specifications);
 
         for ($i = 0; $i < count($request['ingredients']); $i++) {
             $recipe->ingredients()->attach($request['ingredients'][$i], ['quantity' => $request['quantities'][$i]]);
+        }
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $recipe->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
         return redirect($recipe->path());
@@ -85,7 +75,10 @@ class RecipeController extends Controller
     {
         $recipe->syncSpecifications($request->specifications);
         $recipe->update($request->validated());
-
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $recipe->media()->delete();
+            $recipe->addMediaFromRequest('image')->toMediaCollection('image');
+        }
         return redirect($recipe->path());
     }
 
