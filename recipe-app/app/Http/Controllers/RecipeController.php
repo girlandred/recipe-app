@@ -12,7 +12,7 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Specification;
 use App\Models\Category;
-
+use App\Models\User;
 
 class RecipeController extends Controller
 {
@@ -56,7 +56,8 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe): View
     {
-        return view('recipes.show', compact('recipe'));
+        $specifications = Specification::all();
+        return view('recipes.show', compact('recipe', 'specifications'));
     }
 
     public function edit(Recipe $recipe): View

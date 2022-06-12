@@ -34,7 +34,7 @@ class StoreRecipeRequest extends FormRequest
             'ingredients' => 'required|array',
             'specifications' => 'array|nullable',
             'specifications.*' => 'exists:specifications,id',
-            'image' => 'required',
+            'image' => 'sometimes',
         ];
     }
 

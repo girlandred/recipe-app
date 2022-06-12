@@ -21,8 +21,10 @@
         "tailwindcss": "^3.0.18"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^34.1.0",
         "alpinejs": "^3.10.2",
         "aos": "^2.3.4",
-        "choices.js": "^10.1.0"
+        "choices.js": "^10.1.0",
+        "filepond": "^4.30.4"
     }
 }

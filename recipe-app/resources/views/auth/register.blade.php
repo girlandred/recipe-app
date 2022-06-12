@@ -1,59 +1,69 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+@extends('auth.layout')
+
+@section('title', 'Register')
+
+@section('content')
+    <form class="p-3 space-y-3" method="POST" action="{{ route('register') }}" id="registerForm">
+        @csrf
+        <input type='hidden' name='recaptcha_token' id='recaptcha_token'>
+
+        @error('name')
+            <p class="text-red-500 italic text-xs font-light">
+                {{ $message }}
+            </p>
+        @enderror
+
+        @error('email')
+            <p class="text-red-500 italic text-xs font-light">
+                {{ $message }}
+            </p>
+        @enderror
+
+        @error('password')
+            <p class="text-red-500 italic text-xs font-light">
+                {{ $message }}
+            </p>
+        @enderror
+        <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
+            <label for="name" class="hidden lg:block dark:text-gray-200">
+                Name
+            </label>
+            <input type="text" placeholder="Name" id="name" name="name"
+                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
+            <label for="email" class="hidden lg:block dark:text-gray-200">
+                Email
+            </label>
+            <input type="email" placeholder="Email" id="email" name="email"
+                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
+            <label for="password" class="hidden lg:block dark:text-gray-200">
+                Password
+            </label>
+            <input type="password" placeholder="********" id="password" name="password"
+                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
+            <label for="password_confirmation" class="hidden lg:block dark:text-gray-200">
+                Confirm
+            </label>
+            <input type="password" placeholder="********" id="password_confirmation" name="password_confirmation"
+                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3 items-center">
+            <button type="submit"
+                class="w-full lg:w-auto rounded shadow-md py-2 px-4 bg-green-700 text-white hover:bg-green-500">
+                Register
+            </button>
+            <a href="{{ route('login') }}"
+                class="w-full lg:w-auto rounded shadow-md py-2 px-4 bg-gray-400 text-white hover:bg-gray-300 text-center">
+                Login
             </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </form>
+@endsection

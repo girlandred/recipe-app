@@ -4,15 +4,35 @@
 
 @section('content')
     <div class="space-y-4">
-        <div class="w-full h-screen/4 lg:h-screen/3">
-
-            <div class="relative flex justify-center w-full h-full rounded-xl bg-gray-600 uppercase text-white">
-                <span class="self-center px-2 text-center  text-xl lg:text-5xl">
-                    {{ $recipe->name }}
-                </span>
-            </div>
+        <div class="w-full custom-height h-screen/4 lg:h-screen/3">
+            @if ($recipe->getMedia('image')->count() > 0)
+                <div class="w-full h-full rounded-xl bg-center bg-no-repeat bg-cover"
+                    style="background-image:url('{{ $recipe->getFirstMediaUrl('image') }}');">
+                    <div
+                        class="relative bg-gray-900 bg-opacity-60 h-full w-full flex justify-center uppercase text-white rounded-xl">
+                        <span class="self-center px-2 text-center text-xl lg:text-5xl">
+                            {{ $recipe->name }}
+                        </span>
+                    </div>
+                </div>
+            @else
+                <div class="relative flex justify-center w-full h-full rounded-xl bg-gray-600 uppercase text-white">
+                    <span class="self-center px-2 text-center  text-xl lg:text-5xl">
+                        {{ $recipe->name }}
+                    </span>
+                </div>
+            @endif
         </div>
         <div class="w-full p-4 bg-white rounded-md shadow dark:bg-gray-700">
+            <div class="flex flex-col lg:flex-row lg:justify-between">
+                <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
+                    Recipe Details
+                </h4>
+            </div>
+            <p class="mb-5 dark:text-gray-200">
+                <strong>Serves</strong> {{ $recipe->servings }}<br>
+                <strong>Cooking and Prep Time</strong> {{ $recipe->timing }} minutes<br>
+            </p>
             <div class="flex flex-col lg:flex-row lg:justify-between">
                 <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
                     Recipe Details
@@ -33,16 +53,26 @@
                     <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
                         Ingredients
                     </h4>
-                    <p class="mb-5 dark:text-gray-200"><img src="{{ $recipe->getFirstMediaUrl('image') }}" />
-                        <strong>Serves</strong> {{ $recipe->servings }}<br>
-                        <strong>Cooking and Prep Time</strong> {{ $recipe->timing }} minutes<br>
+                    <p class="mb-5 dark:text-gray-200">
                     <ul>
                         @foreach ($recipe->ingredients as $ingredient)
-                            <li class="dark:text-gray-200">
-                                {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
-                            </li>
-                        @endforeach
+                            <li class="dark:text-gray-200"">
+                                                        {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
+                                            </li>
+     @endforeach
                     </ul>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
+                        Specifications
+                    </h4>
+                    <p class="mb-5 dark:text-gray-200 ">
+                        @foreach ($recipe->specifications() as $specification)
+                            <a href="{{ route('specifications.index', $specification->id()) }}" class="bg-green-400 rounded shadow-md py-1 px-2 text-green-700">
+                                {{ $specification->name }}
+                            </a>
+                        @endforeach
                     </p>
                 </div>
                 <div class="md:col-span-2">
@@ -53,8 +83,9 @@
                         {!! $recipe->directions !!}
                     </article>
                 </div>
-                <div>
-                    @if ($recipe->user->id == Auth::id() || $recipe->user->is_admin == true)
+            </div>
+            <div>
+                @if ($recipe->user->id == Auth::id())
                     <form action="{{ route('recipes.destroy', $recipe) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -64,9 +95,7 @@
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>
-                    @endif
-
-                </div>
+                @endif
             </div>
             <div class="pt-4">
                 <h5 class="text-xl font-bold mb-5 dark:text-gray-200 text-green-700">

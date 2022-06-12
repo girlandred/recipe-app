@@ -6,6 +6,7 @@ use App\Traits\HasSpecifications;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\CarbonInterval;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -71,4 +72,5 @@ class Recipe extends Model implements HasMedia
     {
         return $this->hasMany(Comment::class)->orderBy('created_at', 'DESC');
     }
+
 }

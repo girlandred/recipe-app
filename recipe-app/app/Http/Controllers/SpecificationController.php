@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreSpecificationRequest;
 use App\Http\Requests\UpdateSpecificationRequest;
+use App\Models\Recipe;
 
 class SpecificationController extends Controller
 {
@@ -52,7 +53,7 @@ class SpecificationController extends Controller
      */
     public function show(Specification $specification): View
     {
-        return view('admin.specifications.show', compact('specification'));
+        return view('specifications.show', compact('specification'));
     }
 
     /**
@@ -91,5 +92,12 @@ class SpecificationController extends Controller
         $specification->delete();
 
         return redirect()->route('admin.specifications.index');
+    }
+
+    public function display(Specification $specification)
+    {
+        return view('specifications.index', [
+            'recipes' => Recipe::ForSpecification($specification->id()),
+        ]);
     }
 }

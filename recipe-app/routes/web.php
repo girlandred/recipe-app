@@ -38,6 +38,10 @@ Route::middleware(['set_locale'])->group(function () {
         Route::post('/{user}', [UserController::class, 'store']);
     });
 
+    Route::group(['prefix' => 'specifications', 'as' => 'specifications'], function () {
+        Route::get('/{specification}', [SpecificationController::class, 'show'])->name('.index');
+    });
+
     Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
         Route::resource('ingredients', IngredientController::class);
