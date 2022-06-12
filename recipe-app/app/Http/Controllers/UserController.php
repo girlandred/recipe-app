@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
+        $user->getPoints(true);
         return view('user.index', compact('user'));
     }
 

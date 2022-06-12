@@ -18,4 +18,6 @@
     <img class="profile-user-img img-fluid rounded-circle user_picture" width="150"
         src="{{ asset('user_img/' . $user->avatar) }}" alt="User profile picture">
 
+
+    {{ $user->getPoints() }}
 @endsection

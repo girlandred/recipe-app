@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gamify\Points\RecipeCreated;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipe;
 use Illuminate\View\View;
@@ -40,6 +41,8 @@ class RecipeController extends Controller
             'directions' => $request['directions'],
             'image' => $request['image'],
         ]);
+
+        givePoint(new RecipeCreated($recipe, Auth::user()));
 
         $recipe->syncSpecifications($request->specifications);
 
@@ -85,6 +88,7 @@ class RecipeController extends Controller
 
     public function destroy(Recipe $recipe)
     {
+        undoPoint(new RecipeCreated($recipe, Auth::user()));
         $recipe->delete();
         return view('recipes.index');
     }
