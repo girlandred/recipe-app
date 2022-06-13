@@ -16,7 +16,10 @@ class UserController extends Controller
     public function index(User $user)
     {
         $user->getPoints(true);
-        return view('user.index', compact('user'));
+        $badge = $user->badges->first()->name ?? '';
+
+        // sync all badges for current subject using Facade
+        return view('user.index', compact('user', 'badge'));
     }
 
     public function store(StoreUserAvatarRequest $request)

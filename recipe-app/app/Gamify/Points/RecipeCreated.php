@@ -36,4 +36,8 @@ class RecipeCreated extends PointType
         return $this->getSubject()->user;
     }
 
+    // public function removePoints()
+    // {
+    //     return $this->getSubject()->user->getPoints() - 20;
+    // }
 }

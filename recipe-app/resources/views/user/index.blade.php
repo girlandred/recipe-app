@@ -20,4 +20,8 @@
 
 
     {{ $user->getPoints() }}
+    @if (isset($badge))
+        {{ $badge }}
+    @endif
+
 @endsection

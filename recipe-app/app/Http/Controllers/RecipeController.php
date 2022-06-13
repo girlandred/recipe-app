@@ -86,10 +86,12 @@ class RecipeController extends Controller
         return redirect($recipe->path());
     }
 
-    public function destroy(Recipe $recipe)
+    public function destroy(Recipe $recipe, User $user)
     {
-        undoPoint(new RecipeCreated($recipe, Auth::user()));
+        $user = auth()->user();
+        $user->undoPoint(new RecipeCreated($recipe));
         $recipe->delete();
+
         return view('recipes.index');
     }
 }

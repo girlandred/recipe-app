@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div>
-                @if ($recipe->user->id == Auth::id())
+                @if (Auth::user()->id == $recipe->user->id || Auth::user()->is_admin)
                     <form action="{{ route('recipes.destroy', $recipe) }}" method="POST">
                         @csrf
                         @method('DELETE')
