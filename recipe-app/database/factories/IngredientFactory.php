@@ -2,14 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Recipe;
-use App\Models\Specification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Specification>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ingredient>
  */
-class SpecificationFactory extends Factory
+class IngredientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +17,8 @@ class SpecificationFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->text(15)
+            'name' => $this->faker->unique()->word,
+            'user_id' => \App\Models\User::factory()->create()->id,
         ];
     }
 }

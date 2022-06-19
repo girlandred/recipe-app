@@ -20,6 +20,7 @@ class CategorySeeder extends Seeder
             'Lunch',
             'Desert',
             'Snack',
+            'Breakfest',
         ];
 
         foreach ($categories as $category) {

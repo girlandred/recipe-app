@@ -15,7 +15,7 @@
                         Name
                     </th>
                     <th class="text-left px-4 py-2 w-1/3">
-                        Number of Meals
+                        Number of Recipes
                     </th>
                     <th class="text-left px-4 py-2 w-1/3"></th>
                 </tr>

@@ -6,14 +6,11 @@ use App\Gamify\Points\RecipeCreated;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipe;
 use Illuminate\View\View;
-use App\Models\Ingredient;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Specification;
 use App\Models\Category;
-use App\Models\User;
 
 class RecipeController extends Controller
 {
@@ -86,10 +83,9 @@ class RecipeController extends Controller
         return redirect($recipe->path());
     }
 
-    public function destroy(Recipe $recipe, User $user)
+    public function destroy(Recipe $recipe)
     {
-        $user = auth()->user();
-        $user->undoPoint(new RecipeCreated($recipe));
+        undoPoint(new RecipeCreated($recipe, Auth::user()));
         $recipe->delete();
 
         return view('recipes.index');

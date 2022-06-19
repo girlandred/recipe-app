@@ -21,6 +21,11 @@ class SpecificationsSeeder extends Seeder
             $this->createSpecification('Vegetarian'),
             $this->createSpecification('For Adults'),
             $this->createSpecification('Gluten free'),
+            $this->createSpecification('For kids'),
+            $this->createSpecification('Sport diet'),
+            $this->createSpecification('Ukranian'),
+            $this->createSpecification('Mexican'),
+            $this->createSpecification('Thai'),
         ]);
 
         Recipe::all()->each(function ($recipe) use ($specifications) {

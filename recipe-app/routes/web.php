@@ -20,9 +20,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'login');
 
 Route::get('locale/{locale}', [LanguageController::class, 'changeLocale'])->name('locale');
 Route::middleware(['set_locale'])->group(function () {

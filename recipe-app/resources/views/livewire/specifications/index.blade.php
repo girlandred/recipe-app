@@ -2,10 +2,10 @@
     <div
         class="w-full flex flex-col lg:flex-row space-y-2 lg:space-y-0 justify-between p-4 bg-white border-b border-gray-200 lg:items-center rounded-t-md dark:bg-gray-700">
         <p class="font-bold dark:text-gray-200">
-            All Ingredients
+            All Specifications
         </p>
         <div class="space-y-2 lg:space-y-0 lg:space-x-2">
-            <input wire:model="search" type="search" placeholder="Find an Ingredient"
+            <input wire:model="search" type="search" placeholder="Find an Specification"
                 class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200 text-xs">
         </div>
     </div>
@@ -17,7 +17,7 @@
                         Name
                     </th>
                     <th class="text-left px-4 py-2 w-1/3">
-                        Number of Meals
+                        Number of Recipes
                     </th>
                     <th class="text-left px-4 py-2 w-1/3"></th>
                 </tr>
