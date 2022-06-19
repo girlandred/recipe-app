@@ -28,9 +28,9 @@
                             </p>
                         @endforeach
                         @foreach ($ingredients as $ingredient)
-                            @if (in_array(ucwords($query), $ingredient))
+                            {{-- @if (in_array(ucwords($query), $ingredient))
                                 @break
-                            @endif
+                            @endif --}}
 
                             @if ($loop->last)
                                 <p class="px-2 py-1 cursor-pointer rounded-b-lg dark:text-gray-200" wire:click.prevent="createIngredient()">

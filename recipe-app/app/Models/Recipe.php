@@ -72,4 +72,8 @@ class Recipe extends Model implements HasMedia
         return $this->hasMany(Comment::class)->orderBy('created_at', 'DESC');
     }
 
+    public static function getTableName(): string
+    {
+        return (new self())->getTable();
+    }
 }

@@ -11,6 +11,8 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Specification;
 use App\Models\Category;
+use App\Models\Ingredient;
+
 
 class RecipeController extends Controller
 {
@@ -64,17 +66,16 @@ class RecipeController extends Controller
     {
         $oldSpecifications = $recipe->Specifications()->pluck('id')->toArray();
         $recipe->load('ingredients');
-        return view('recipes.edit', [
-            'recipe' => $recipe,
-            'specifications' => Specification::all(),
-            'categories' => Category::all(),
-            'oldSpecifications' => $oldSpecifications,
-        ]);
+        $categories = Category::all();
+        $specifications = Specification::all();
+        return view('recipes.edit', compact('recipe', 'specifications', 'categories'));
     }
 
     public function update(UpdateRecipeRequest $request, Recipe $recipe): RedirectResponse
     {
-        $recipe->syncSpecifications($request->specifications);
+        for ($i = 0; $i < count($request['ingredients']); $i++) {
+            $recipe->ingredients()->attach($request['ingredients'][$i], ['quantity' => $request['quantities'][$i]]);
+        }
         $recipe->update($request->validated());
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $recipe->media()->delete();

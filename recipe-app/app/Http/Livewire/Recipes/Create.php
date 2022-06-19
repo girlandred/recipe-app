@@ -39,7 +39,7 @@ class Create extends Component
         $this->ids = array();
 
         if (isset($this->recipe)) {
-            foreach($this->recipe->ingredients as $i=>$ingredient)  {
+            foreach ($this->recipe->ingredients as $i => $ingredient) {
                 $this->inputs[$i]['quantity'] = $ingredient->pivot->quantity;
                 $this->inputs[$i]['ingredient'] = $ingredient->name;
                 $this->inputs[$i]['ingredientId'] = $ingredient->id;
@@ -98,10 +98,10 @@ class Create extends Component
      */
     public function remove($i)
     {
-        if (($key = array_search($this->inputs[$i]['ingredientId'], $this->ids)) !== false)  {
+        if (($key = array_search($this->inputs[$i]['ingredientId'], $this->ids)) !== false) {
             unset($this->ids[$key]);
         }
-        
+
         unset($this->inputs[$i]);
     }
 
@@ -114,14 +114,11 @@ class Create extends Component
     {
         if ($this->query != '') {
             $this->autocomplete = false;
-            if (config("database.default") == "mysql") {
-                $this->ingredients = Ingredient::where('name', 'like', '%' . $this->query . '%')
-                    ->orderByRaw('LOCATE(\'' . $this->query . '\', name)')
-                    ->take(10)
-                    ->get()
-                    ->toArray();
-            }
-
+            $this->ingredients = Ingredient::where('name', 'like', '%' . $this->query . '%')
+                ->orderByRaw('LOCATE(\'' . $this->query . '\', name)')
+                ->take(4)
+                ->get()
+                ->toArray();
         } else {
             $this->ingredients = array();
         }
@@ -149,7 +146,7 @@ class Create extends Component
         $this->validate([
             'query' => 'required|unique:App\Models\Ingredient,name',
         ]);
-        
+
         $ingredient = Auth::User()->Ingredients()->create([
             'name' => $this->query
         ]);

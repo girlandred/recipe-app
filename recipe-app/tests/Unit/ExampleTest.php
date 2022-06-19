@@ -15,15 +15,8 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    /*public function test_that_true_is_true()
+    public function test_that_true_is_true()
     {
         $this->assertTrue(true);
-    }*/
-    public function test_specification_created()
-    {
-        $specification = Specification::factory()->create([
-            'name'=>'spec_name'
-        ]);
-
     }
 }

@@ -27,9 +27,9 @@ Route::middleware(['set_locale'])->group(function () {
     Route::resource('recipes', RecipeController::class);
 
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->middleware(['auth'])->name('dashboard');
 
     Route::group(['prefix' => 'user', 'as' => 'user'], function () {
         Route::get('/{user}', [UserController::class, 'index'])->name('.index');
