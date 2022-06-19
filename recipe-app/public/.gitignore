@@ -1,1 +1,2 @@
-/user_img
+/user_img/*
+!user_img/nothing.png
