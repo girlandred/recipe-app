@@ -3,98 +3,50 @@
 @section('title', 'Profile ')
 
 @section('content')
-    @if (Auth::user()->id == $user->id)
-        <form method="POST" enctype="multipart/form-data">
-            @csrf <div class="w-full md:col-span-4">
-                <input type="file" name="avatar" id="avatar"
-                    class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
-            </div>
-            <button type="submit"
-                class="w-full lg:w-auto rounded shadow-md py-2 px-4 bg-green-700 text-white hover:bg-green-500">
-                Add Photo
-            </button>
-        </form>
-    @endif
-    {{-- <img class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16" width="150"
-        src="{{ asset('user_img/' . $user->avatar) }}" alt="User profile picture"> --}}
 
 
-    {{ $user->getPoints() }}
-        {{ $badge }}
+    <div class="w-3/4 lg:w-1/2 mx-auto rounded-md shadow-md bg-white dark:bg-gray-700 h-full m-20 p-10 text-center">
+ddd
 
-    {{-- <section class="relative py-16 bg-gray-300">
-        <div class="container mx-auto px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-                <div class="px-6">
-                    <div class="flex flex-wrap justify-center">
-                        <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                            <div class="relative">
-                                <img alt="..." src="{{ asset('user_img/' . $user->avatar) }}"
-                                    class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                                    style="max-width: 150px;" />
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                            <div class="py-6 px-3 mt-32 sm:mt-0">
-                                <button
-                                    class="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
-                                    type="button" style="transition: all 0.15s ease 0s;">
-                                    Connect
-                                </button>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                            <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                <div class="mr-4 p-3 text-center">
-                                    <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-gray-700">22</span><span
-                                        class="text-sm text-gray-500">Friends</span>
-                                </div>
-                                <div class="mr-4 p-3 text-center">
-                                    <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-gray-700">10</span><span
-                                        class="text-sm text-gray-500">Photos</span>
-                                </div>
-                                <div class="lg:mr-4 p-3 text-center">
-                                    <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-gray-700">89</span><span
-                                        class="text-sm text-gray-500">Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-12">
-                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                            Jenna Stones
-                        </h3>
-                        <div class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                            <i class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>
-                            Los Angeles, California
-                        </div>
-                        <div class="mb-2 text-gray-700 mt-10">
-                            <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i>Solution Manager - Creative Tim
-                            Officer
-                        </div>
-                        <div class="mb-2 text-gray-700">
-                            <i class="fas fa-university mr-2 text-lg text-gray-500"></i>University of Computer Science
-                        </div>
-                    </div>
-                    <div class="mt-10 py-10 border-t border-gray-300 text-center">
-                        <div class="flex flex-wrap justify-center">
-                            <div class="w-full lg:w-9/12 px-4">
-                                <p class="mb-4 text-lg leading-relaxed text-gray-800">
-                                    An artist of considerable range, Jenna the name taken by
-                                    Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                                    performs and records all of his own music, giving it a
-                                    warm, intimate feel with a solid groove structure. An
-                                    artist of considerable range.
-                                </p>
-                                <a href="#pablo" class="font-normal text-pink-500">Show more</a>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+
+    {{-- <div class="space-y-4">
+        <div class="w-full rounded-md shadow-md bg-white dark:bg-gray-700 h-full">
+            <div class="flex flex-row bg-gray-50 dark:bg-gray-600 shadow rounded p-4 mb-4">
+                <div class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl">
+                    <img alt="..." src="{{ asset('user_img/' . $user->avatar) }}" class="w-full h-full rounded-full"
+                        style="max-width: 150px;" />
                 </div>
             </div>
+            <div class="flex flex-col text-center mt-3 mb-4">
+                <span class="text-2xl font-medium">{{ $user->name }}</span>
+                <span class="text-md text-gray-400">{{ $user->email }}</span>
+            </div>
+            <p class="px-16 text-center text-md text-gray-800">{{ $user->getPoints() }}</p>
+            <div class="px-16 mt-3 text-center">
+                @if (!isset($badge))
+                    <span class="bg-gray-100 h-5 p-1 px-3 rounded cursor-pointer hover:shadow hover:bg-gray-200">
+                        #{{ $badge }}
+                    </span>
+                @endif
+            </div>
+            <div class="px-14 mt-5">
+                @if (Auth::user()->id == $user->id)
+                    <form method="POST" enctype="multipart/form-data">
+                        @csrf <div class="w-full md:col-span-4">
+                            <input type="file" name="avatar" id="avatar"
+                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+                        </div>
+                        <button type="submit"
+                            class="h-12 bg-gray-200 w-full text-black text-md rounded hover:shadow hover:bg-gray-300 mb-2">
+                            Add Photo
+                        </button>
+                    </form>
+                @endif
+            </div>
+
+
         </div>
-    </section> --}}
+    </div>
+    </div> --}}
 @endsection

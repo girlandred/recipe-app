@@ -19,7 +19,8 @@
                             Name
                         </label>
                         <div class="w-full md:col-span-4">
-                            <input type="text" name="name" id="name" value="{{ Request::old('name', $recipe->name) }}"
+                            <input type="text" name="name" id="name"
+                                value="{{ Request::old('name', $recipe->name) }}"
                                 class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
                             @error('name')
                                 <p class="text-red-500 italic text-xs font-light">
@@ -95,18 +96,26 @@
                         </div>
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
-                        <label for="image" class="dark:text-gray-200 self-center">
+                        <label for="image" class="dark:text-gray-200 self-top">
                             Image
                         </label>
-                        <div class="w-full md:col-span-4 grid grid-cols-1 md:grid-cols-12">
-                            @if ($recipe->getMedia('image')->count() > 0)
-                                <div class="md:col-span-2">
-                                    <img src="{{ $recipe->getFirstMediaUrl('image') }}" class="h-16 rounded">
+                        <div class="w-full md:col-span-4">
+                            <label for="dropzone-file"
+                                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                @if ($recipe->getMedia('image')->count() > 0)
+                                    <div class="md:col-span-2">
+                                        <img src="{{ $recipe->getFirstMediaUrl('image') }}" class="h-16 rounded">
+                                    </div>
+                                @endif
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                            class="font-semibold">Click to upload</span> or drag and drop</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
+                                        800x400px)</p>
                                 </div>
-                            @endif
-                            <div class="md:col-span-10">
-                                <input type="file" name="image" x-ref="input">
-                            </div>
+                                <input id="dropzone-file" type="file" name="image" class="hidden" multiple
+                                    data-allow-reorder="true" />
+                            </label>
                         </div>
                     </div>
                     <div class="md:space-y-2">
