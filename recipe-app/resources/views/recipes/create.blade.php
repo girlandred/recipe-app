@@ -125,7 +125,8 @@
                         </label>
                         <div>
                             <textarea name="directions" id="directions"
-                                class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full h-64 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">{!! old('directions') !!}</textarea>
+                                class="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                placeholder="Write directions...">{!! old('directions') !!}</textarea>
                         </div>
                     </div>
                     <div>
@@ -144,7 +145,7 @@
     <script>
         ClassicEditor
             .create(document.querySelector('#directions'), {
-                toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo', '|', 'bulletedList', 'numberedList'],
+                toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo'],
             })
             .catch(error => {
                 console.error(error);

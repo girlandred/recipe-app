@@ -8,6 +8,7 @@
         content="Eat App is an application that allows you to create menus using lists of recipes from the community">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     @livewireStyles
     <script src="https://kit.fontawesome.com/a357069ed8.js" crossorigin="anonymous"></script>

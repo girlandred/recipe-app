@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $user->getPoints(true);
         $badge = $user->badges->first()->name ?? '';
-
         // sync all badges for current subject using Facade
         return view('user.index', compact('user', 'badge'));
     }

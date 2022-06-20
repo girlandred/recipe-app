@@ -20,13 +20,16 @@ trait HasSpecifications
     public function syncSpecifications(array $specifications)
     {
         $this->save();
+        
         $this->specificationsRelation()->sync($specifications);
+
         $this->unsetRelation('specificationsRelation');
     }
 
     public function removeSpecifications()
     {
         $this->specificationsRelation()->detach();
+
         $this->unsetRelation('specificationsRelation');
     }
 }
