@@ -9,7 +9,7 @@
                 {{ $recipes }}
             </p>
             <p class="font-black text-white text-xl">
-                Recipes
+                {{ __('main.recipes') }}
             </p>
         </div>
         <div class="shadow-lg rounded-lg p-4 bg-gradient-to-br from-green-400 to-blue-500 h-32">
@@ -17,7 +17,7 @@
                 {{ $ingredients }}
             </p>
             <p class="font-black text-white text-xl">
-                Ingredients
+                {{ __('main.ingredients') }}
             </p>
         </div>
         <div class="shadow-lg rounded-lg p-4 bg-gradient-to-br from-green-400 to-blue-500 h-32">
@@ -25,7 +25,7 @@
                 {{ $specifications }}
             </p>
             <p class="font-black text-white text-xl">
-                Specifications
+                {{ __('main.specifications') }}
             </p>
         </div>
     </div>

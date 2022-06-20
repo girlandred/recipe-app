@@ -1,14 +1,14 @@
 <div>
     <div class="items-top space-y-4 md:space-y-0 md:grid md:grid-cols-9 md:space-x-6">
         <div>
-            <input type="text" placeholder="Amount" wire:model="quantity" class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+            <input type="text" placeholder={{ __('main.amount') }} wire:model="quantity" class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
         </div>
         <div class="w-full relative md:col-span-4">
-            <input type="text" placeholder="Search Ingredients..." wire:model.debounce.300ms="query" wire:keydown.escape="resetQuery" wire:keydown.tab="resetQuery" class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
+            <input type="text" placeholder={{ __('main.search') }} wire:model.debounce.300ms="query" wire:keydown.escape="resetQuery" wire:keydown.tab="resetQuery" class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200">
             
             <div class="absolute z-10 w-full bg-white dark:bg-gray-700 rounded-b-lg shadow-lg">
                 <p wire:loading wire:target="query" class="px-2 py-1 dark:text-gray-200">
-                    Searching...
+                    {{ __('main.search') }}
                 </p>
             </div>
 
@@ -28,19 +28,15 @@
                             </p>
                         @endforeach
                         @foreach ($ingredients as $ingredient)
-                            {{-- @if (in_array(ucwords($query), $ingredient))
-                                @break
-                            @endif --}}
-
                             @if ($loop->last)
                                 <p class="px-2 py-1 cursor-pointer rounded-b-lg dark:text-gray-200" wire:click.prevent="createIngredient()">
-                                    Add "{{ $query }}"
+                                    {{ __('main.add') }} "{{ $query }}"
                                 </p>
                         @endif
                         @endforeach
                     @else
                             <p class="px-2 py-1 cursor-pointer rounded-b-lg dark:text-gray-200" wire:click.prevent="createIngredient()">
-                                No Results - Add "{{ $query }}"
+                                {{ __('main.no_result') }} "{{ $query }}"
                             </p>
                     @endif
                 </div>

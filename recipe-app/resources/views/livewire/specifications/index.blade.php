@@ -2,10 +2,10 @@
     <div
         class="w-full flex flex-col lg:flex-row space-y-2 lg:space-y-0 justify-between p-4 bg-white border-b border-gray-200 lg:items-center rounded-t-md dark:bg-gray-700">
         <p class="font-bold dark:text-gray-200">
-            All Specifications
+            {{ __('main.specifications') }}
         </p>
         <div class="space-y-2 lg:space-y-0 lg:space-x-2">
-            <input wire:model="search" type="search" placeholder="Find an Specification"
+            <input wire:model="search" type="search" placeholder= {{ __('main.search') }}
                 class="border-1 border-gray-100 shadow bg-opacity-20 rounded-lg placeholder-gray-500 w-full lg:w-60 focus:outline-none focus:ring-1 focus:border-green-500 focus:ring-green-500 dark:bg-gray-900 dark:border-transparent dark:text-gray-200 text-xs">
         </div>
     </div>
@@ -14,10 +14,10 @@
             <thead>
                 <tr class="hidden lg:table-row border-b">
                     <th class="text-left px-4 py-2 w-1/3">
-                        Name
+                        {{ __('main.title') }}
                     </th>
                     <th class="text-left px-4 py-2 w-1/3">
-                        Number of Recipes
+                        {{ __('main.number_of') }}
                     </th>
                     <th class="text-left px-4 py-2 w-1/3"></th>
                 </tr>

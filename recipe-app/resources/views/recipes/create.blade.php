@@ -6,7 +6,7 @@
     <div class="w-full rounded-md shadow-md bg-white dark:bg-gray-700">
         <div class="w-full p-4 border-b border-gray-200">
             <p class="font-bold dark:text-gray-200">
-                Create New Recipe
+                {{ __('main.create_recipes') }}
             </p>
         </div>
         <div class="p-3">
@@ -15,7 +15,7 @@
                 <div class="space-y-4">
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label for="name" class="dark:text-gray-200 self-center">
-                            Name
+                            {{ __('main.title') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <input type="text" name="name" id="name" value="{{ Request::old('name') }}"
@@ -29,7 +29,7 @@
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label for="servings" class="dark:text-gray-200 self-center">
-                            # of Servings
+                            {{ __('main.servings') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <input type="text" name="servings" id="servings" value="{{ Request::old('servings') }}"
@@ -43,7 +43,7 @@
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label for="timing" class="dark:text-gray-200 self-center">
-                            Time in Minutes
+                            {{ __('main.time') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <input type="text" name="timing" id="timing" value="{{ Request::old('timing') }}"
@@ -57,7 +57,7 @@
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label for="category_id" class="dark:text-gray-200 self-center">
-                            Recipe Type
+                            {{ __('main.type') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <select name="category_id"
@@ -77,7 +77,7 @@
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label class="dark:text-gray-200 self-center">
-                            Specifications
+                            {{ __('main.specifications') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <select
@@ -92,14 +92,15 @@
                     </div>
                     <div class="items-start md:grid md:grid-cols-9 md:space-x-6">
                         <label for="image" class="dark:text-gray-200 self-top">
-                            Image
+                            {{ __('main.image') }}
                         </label>
                         <div class="w-full md:col-span-4">
                             <label for="dropzone-file"
                                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                            class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            class="font-semibold">{{ __('main.click') }}</span> {{ __('main.drag') }}
+                                    </p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                                         800x400px)</p>
                                 </div>
@@ -110,7 +111,7 @@
                     </div>
                     <div class="md:space-y-2">
                         <label class="dark:text-gray-200 self-center">
-                            Ingredients
+                            {{ __('main.ingredients') }}
                         </label>
                         @error('ingredients')
                             <p class="text-red-500 italic text-xs font-light">
@@ -121,22 +122,21 @@
                     </div>
                     <div class="md:space-y-2">
                         <label for="directions" class="dark:text-gray-200 self-center">
-                            Directions
+                            {{ __('main.directions') }}
                         </label>
                         <div>
                             <textarea name="directions" id="directions"
                                 class="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                placeholder="Write directions...">{!! old('directions') !!}</textarea>
+                                placeholder={{ __('main.write_directions') }}>{!! old('directions') !!}</textarea>
                         </div>
                     </div>
                     <div>
                         <button type="submit"
                             class="w-full lg:w-auto rounded shadow-md py-2 px-4 bg-green-700 text-white hover:bg-green-500">
-                            Add Meal
+                            {{ __('main.add_meal') }}
                         </button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

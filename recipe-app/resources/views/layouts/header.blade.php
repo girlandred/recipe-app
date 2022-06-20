@@ -1,6 +1,5 @@
 <header class="lg:fixed">
-    <div class="w-full bg-green-700 p-3 text-white lg:w-72 lg:h-screen" x-data="{ open: false }"
-        @click.away="open = false">
+    <div class="w-full bg-green-700 p-3 text-white lg:w-72 lg:h-screen" x-data="{ open: false }" @click.away="open = false">
         <div class="flex justify-between items-center lg:mb-20 lg:mt-10">
             <div class="text-lg lg:hidden">
                 <button
@@ -19,7 +18,7 @@
                             class="w-full p-3 font-bold rounded-lg hover:bg-white hover:text-green-700 space-x-2" @endif>
                         <i class="fas fa-tachometer-alt"></i>
                         <span>
-                            Admin
+                            {{ __('main.admin_panel') }}
                         </span>
                     </a>
                 @endif
@@ -36,7 +35,7 @@
                 @endif
                 <i class="fas fa-hamburger"></i>
                 <span>
-                    Recipes
+                    {{ __('main.recipes') }}
                 </span>
                 <span aria-label="Recipes Menu" class="float-right">
                     <i class="fas fa-angle-down text-center cursor-pointer transition transform ease-in-out duration-200"
@@ -50,7 +49,7 @@
                                 class="w-full py-2 pl-8 pr-3 font-bold rounded-lg hover:bg-white hover:text-green-700 space-x-2" @endif>
                         <i class="fas fa-apple-alt"></i>
                         <span>
-                            All Recipes
+                            {{ __('main.all_recipes') }}
                         </span>
                     </a>
                     <a href="{{ route('recipes.create') }}"
@@ -59,7 +58,7 @@
                                 class="w-full py-2 pl-8 pr-3 font-bold rounded-lg hover:bg-white hover:text-green-700 space-x-2" @endif>
                         <i class="fas fa-plus"></i>
                         <span>
-                            Create Recipe
+                            {{ __('main.create_recipes') }}
                         </span>
                     </a>
                 </div>
@@ -81,12 +80,12 @@
                         {{ __('main.change_locale') }}
                     </a>
                     <a href="{{ route('user.index', Auth::user()->id) }}" class="px-3 py-2">
-                        Profile
+                        {{ __('main.my_profile') }}
                     </a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="px-3 py-2 font-bold w-full text-left" aria-label="Logout">
-                            Logout
+                            {{ __('main.logout') }}
                         </button>
                     </form>
                 </div>

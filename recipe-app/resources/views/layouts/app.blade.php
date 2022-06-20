@@ -8,7 +8,7 @@
         content="Eat App is an application that allows you to create menus using lists of recipes from the community">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     @livewireStyles
     <script src="https://kit.fontawesome.com/a357069ed8.js" crossorigin="anonymous"></script>
@@ -50,14 +50,14 @@
                             </a>
                             <a href="{{ route('user.index', Auth::user()->id) }}"
                                 class="px-5 py-2 hover:bg-green-700 hover:text-white">
-                                Profile
+                                {{ __('main.my_profile') }}
                             </a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit"
                                     class="w-full text-left px-5 py-2 hover:bg-green-700 hover:text-white"
                                     aria-label="Logout">
-                                    Logout
+                                    {{ __('main.logout') }}
                                 </button>
                             </form>
                         </div>

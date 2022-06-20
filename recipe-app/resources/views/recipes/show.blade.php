@@ -26,23 +26,24 @@
         <div class="w-full p-4 bg-white rounded-md shadow dark:bg-gray-700">
             <div class="flex flex-col lg:flex-row lg:justify-between">
                 <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                    Recipe Details
+                    {{ __('main.recipe_details') }}
                 </h4>
             </div>
             <p class="mb-5 dark:text-gray-200">
-                <strong>Serves</strong> {{ $recipe->servings }}<br>
-                <strong>Cooking and Prep Time</strong> {{ $recipe->timing }} minutes<br>
+                <strong>{{ __('main.servings') }}</strong> {{ $recipe->servings }}<br>
+                <strong>{{ __('main.cooking') }}</strong> {{ $recipe->timing }} {{ __('main.minutes') }}<br>
             </p>
             <div class="flex flex-col lg:flex-row lg:justify-between">
                 <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                    Recipe Details
+                    {{ __('main.recipe_details') }}
                 </h4>
                 <div class="order-first lg:order-last pb-3 lg:flex lg:space-x-2">
                     <div>
                         @if ($recipe->user->id == Auth::id())
                             <a href="{{ route('recipes.edit', $recipe) }}"
                                 class="w-full lg:w-auto rounded shadow-md py-1 px-2 bg-green-700 text-white hover:bg-green-500 text-xs">
-                                <i class="fas fa-edit"></i> Edit
+                                <i class="fas fa-edit"></i>
+                                {{ __('main.edit') }}
                             </a>
                         @endif
                     </div>
@@ -51,25 +52,26 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                        Ingredients
+                        {{ __('main.ingredients') }}
                     </h4>
                     <p class="mb-5 dark:text-gray-200">
                     <ul>
                         @foreach ($recipe->ingredients as $ingredient)
                             <li class="dark:text-gray-200"">
-                                                        {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
-                                            </li>
-     @endforeach
+                                {{ $ingredient->pivot->quantity }} {{ $ingredient->name }}
+                            </li>
+                        @endforeach
                     </ul>
                     </p>
                 </div>
                 <div>
                     <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                        Specifications
+                        {{ __('main.specifications') }}
                     </h4>
                     <p class="mb-5 dark:text-gray-200 ">
                         @foreach ($recipe->specifications() as $specification)
-                            <a href="{{ route('specifications.index', $specification->id()) }}" class="bg-green-400 rounded shadow-md py-1 px-2 text-green-700">
+                            <a href="{{ route('specifications.index', $specification->id()) }}"
+                                class="bg-green-400 rounded shadow-md py-1 px-2 text-green-700">
                                 {{ $specification->name }}
                             </a>
                         @endforeach
@@ -77,7 +79,7 @@
                 </div>
                 <div class="md:col-span-2">
                     <h4 class="text-2xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                        Method
+                        {{ __('main.directions') }}
                     </h4>
                     <article class="max-w-full prose dark:prose-dark">
                         {!! $recipe->directions !!}
@@ -99,7 +101,7 @@
             </div>
             <div class="pt-4">
                 <h5 class="text-xl font-bold mb-5 dark:text-gray-200 text-green-700">
-                    Comments
+                    {{ __('main.comments') }}
                 </h5>
                 @livewire('comments', ['recipe' => $recipe])
             </div>

@@ -11,7 +11,7 @@
             <div class="w-full rounded-md shadow-md bg-white dark:bg-gray-700">
                 <div class="flex justify-between p-4 border-b border-gray-200">
                     <p class="font-bold dark:text-gray-200 self-center">
-                        Admin Menu
+                        {{ __('main.admin_menu') }}
                     </p>
                     <div class="lg:hidden">
                         <button class="border border-gray-100 px-2 pt-1 rounded-lg dark:text-gray-200" @click="open = !open">
@@ -23,17 +23,17 @@
                     <div class="p-4">
                         <div class="flex flex-row justify-between">
                             <div class="font-bold mb-3 dark:text-gray-200">
-                                Ingredients
+                                {{ __('main.ingredients') }}
                             </div>
                         </div>
                         <div class="flex flex-col">
                             <a href="{{ route('admin.ingredients.index') }}"
                                 class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
-                                - List all Ingredients
+                                {{ __('main.list_all_ingr') }}
                             </a>
                             <a href="{{ route('admin.ingredients.create') }}"
                                 class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
-                                - Add new Ingredient
+                                {{ __('main.add_ingr') }}
                             </a>
                         </div>
                     </div>
@@ -43,17 +43,17 @@
                     <div class="p-4">
                         <div class="flex flex-row justify-between">
                             <div class="font-bold mb-3 dark:text-gray-200">
-                                Specifications
+                                {{ __('main.specifications') }}
                             </div>
                         </div>
                         <div class="flex flex-col">
                             <a href="{{ route('admin.specifications.index') }}"
                                 class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
-                                - List all Specifications
+                                {{ __('main.list_all_spec') }}
                             </a>
                             <a href="{{ route('admin.specifications.create') }}"
                                 class="hover:text-yellow-600 dark:text-gray-200 dark:hover:text-yellow-600">
-                                - Add new Specification
+                                {{ __('main.add_spec') }}
                             </a>
                         </div>
                     </div>

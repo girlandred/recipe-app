@@ -24,7 +24,7 @@
                 @endforeach
             </div>
         @else
-            No Recipes are using this ingredient.
+            {{ __('main.no_recipe') }}
         @endif
     </div>
 @endsection

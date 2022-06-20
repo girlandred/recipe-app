@@ -27,7 +27,7 @@
                     @endforeach
                 </div>
             @else
-                No Recipes are using this specification.
+                {{ __('main.no_recipe_spec') }}
             @endif
         </div>
     </div>

@@ -7,7 +7,7 @@
         @if (session('status') == 'verification-link-sent')
             <div
                 class="bg-blue-400 bg-opacity-20 text-blue-700 border-l-4 border-blue-400 py-3 px-4 dark:bg-opacity-40 dark:text-blue-300">
-                <i class="fas fa-info-circle mr-1"></i> Verification link has been sent.
+                <i class="fas fa-info-circle mr-1"></i> {{ __('main.verification_link') }}
             </div>
         @endif
 
