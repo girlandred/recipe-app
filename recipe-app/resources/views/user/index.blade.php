@@ -18,22 +18,18 @@
                 @endif
             </div>
             <div class="flex justify-center items-center gap-2 my-3">
-                <div class="p-3">
-
-                    <div class="font-semibold text-center mx-4">
-                        <p class="text-black">{{ $user->recipes->count() }}</p>
-                        <span class="text-gray-400"> {{ __('main.recipes') }}</span>
-                    </div>
-                    <div class="font-semibold text-center mx-4">
-                        <p class="text-black">10</p>
-                        <span class="text-gray-400">{{ __('main.followers') }}</span>
-                    </div>
-                    <div class="font-semibold text-center mx-4">
-                        <p class="text-black">102</p>
-                        <span class="text-gray-400">{{ __('main.folowing') }}</span>
-                    </div>
+                <div class="font-semibold text-center mx-2">
+                    <p class="text-black">{{ $user->recipes->count() }}</p>
+                    <span class="text-gray-400"> {{ __('main.recipes') }}</span>
                 </div>
-
+                <div class="font-semibold text-center mx-2">
+                    <p class="text-black">10</p>
+                    <span class="text-gray-400">{{ __('main.followers') }}</span>
+                </div>
+                <div class="font-semibold text-center mx-2">
+                    <p class="text-black">102</p>
+                    <span class="text-gray-400">{{ __('main.folowing') }}</span>
+                </div>
             </div>
         </div>
     </div>
