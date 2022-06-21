@@ -15,7 +15,7 @@
                     </p>
                     <div class="lg:hidden">
                         <button class="border border-gray-100 px-2 pt-1 rounded-lg dark:text-gray-200" @click="open = !open">
-                            <i class="fas fa-bars"></i>
+                            <i class="fas fa-pizza-slice"></i>
                         </button>
                     </div>
                 </div>

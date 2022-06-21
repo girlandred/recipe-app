@@ -1,6 +1,11 @@
 <header class="lg:fixed">
     <div class="w-full bg-green-700 p-3 text-white lg:w-72 lg:h-screen" x-data="{ open: false }" @click.away="open = false">
         <div class="flex justify-between items-center lg:mb-20 lg:mt-10">
+            <a href="{{ route('user.index', Auth::user()->id) }}"
+                class="flex text-lg font-bold lg:text-center lg:w-full lg:flex-col">
+                <i class="fas fa-pizza-slice pr-3 self-center lg:pr-0 lg:text-5xl lg:pb-3"></i>
+                Eat App
+            </a>
             <div class="text-lg lg:hidden">
                 <button
                     class="border border-gray-100 px-2 rounded-lg duration-300 ease-in-out transition text-center hover:bg-white hover:text-green-700"

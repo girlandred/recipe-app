@@ -18,18 +18,22 @@
                 @endif
             </div>
             <div class="flex justify-center items-center gap-2 my-3">
-                <div class="font-semibold text-center mx-4">
-                    <p class="text-black">{{ $user->recipes->count() }}</p>
-                    <span class="text-gray-400"> {{ __('main.recipes') }}</span>
+                <div class="p-3">
+
+                    <div class="font-semibold text-center mx-4">
+                        <p class="text-black">{{ $user->recipes->count() }}</p>
+                        <span class="text-gray-400"> {{ __('main.recipes') }}</span>
+                    </div>
+                    <div class="font-semibold text-center mx-4">
+                        <p class="text-black">10</p>
+                        <span class="text-gray-400">{{ __('main.followers') }}</span>
+                    </div>
+                    <div class="font-semibold text-center mx-4">
+                        <p class="text-black">102</p>
+                        <span class="text-gray-400">{{ __('main.folowing') }}</span>
+                    </div>
                 </div>
-                <div class="font-semibold text-center mx-4">
-                    <p class="text-black">10</p>
-                    <span class="text-gray-400">{{ __('main.followers') }}</span>
-                </div>
-                <div class="font-semibold text-center mx-4">
-                    <p class="text-black">102</p>
-                    <span class="text-gray-400">{{ __('main.folowing') }}</span>
-                </div>
+
             </div>
         </div>
     </div>
@@ -40,7 +44,7 @@
             <label for="dropzone-file"
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                    <p class="mb-2 text-center text-sm text-gray-500 dark:text-gray-400"><span
                             class="font-semibold">{{ __('main.click') }}</span> {{ __('main.drag') }}
                     </p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
@@ -50,8 +54,8 @@
                     data-allow-reorder="true" />
             </label>
             <button type="submit"
-                class="w-full lg:w-auto rounded shadow-md py-2 px-4 
-                bg-gray-200 text-black text-md rounded hover:shadow hover:bg-gray-300 mb-2">
+                class="w-full lg:w-auto rounded shadow-md  space-y-2 mt-3 py-2 px-4 
+                bg-green-700 text-white hover:bg-green-500 mb-2">
                 {{ __('main.add') }}
             </button>
         </form>
